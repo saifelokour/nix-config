@@ -107,16 +107,7 @@
         enable = true;
         lspServersToEnable = [ "elixirls" "rnix-lsp" ];
       };
-      # null-ls = {
-      #   enable = true;
-      #   sources = {
-      #     formatting = {
-      #       nixfmt.enable = true;
-      #       prettier.enable = true;
-      #       stylua.enable = true;
-      #     };
-      #   };
-      # };
+
       lsp = {
         enable = true;
         servers = {

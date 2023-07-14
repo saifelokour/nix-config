@@ -41,6 +41,7 @@
     };
     casks = [
       "alfred"
+      "alt-tab"
       "betterdisplay"
       "calibre"
       "coconutbattery"

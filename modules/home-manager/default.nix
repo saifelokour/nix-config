@@ -13,6 +13,7 @@
     erlang
     elixir
     unison-ucm
+    cbqn
     efm-langserver
     nodePackages.prettier
 
@@ -27,6 +28,7 @@
     terminal-notifier
     xclip
     ripgrep
+    mpw
 
     luarocks
     luaformatter
@@ -34,7 +36,7 @@
     transmission
     nodePackages.webtorrent-cli
     youtube-dl
-    flexget
+    # flexget
 
     iterm2
     postgresql

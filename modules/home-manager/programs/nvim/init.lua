@@ -16,9 +16,12 @@ require("lspconfig").efm.setup {
   settings = {
     languages = {
       typescript = { prettier },
-      typescriptreact = { prettier },
       javascript = { prettier },
+      ["typescript.tsx"] = { prettier },
+      ["javascript.jsx"] = { prettier },
+      typescriptreact = { prettier },
       javascriptreact = { prettier },
+      json = { prettier },
       lua = { lua_format }
     }
   }
@@ -26,8 +29,15 @@ require("lspconfig").efm.setup {
 
 local wk = require("which-key")
 wk.register({
-  g = { name = "+goto" },
+  g = {
+    name = "+goto",
+    d = { "<cmd>Telescope lsp_definitions<cr>", "definition" },
+    D = { "<cmd>Telescope lsp_references<cr>", "references" },
+    I = { "<cmd>Telescope lsp_implementations<cr>", "implementations" },
+    t = { "<cmd>Telescope lsp_type_definitions<cr>", "type definition" }
+  },
   s = { name = "+surround" },
+  ["<C-S>"] = { "<cmd>w<cr>", "save" },
   ["]"] = { name = "+next" },
   ["["] = { name = "+prev" },
   ["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
@@ -38,7 +48,7 @@ wk.register({
     ["'"] = { "<cmd>Telescope resume<cr>", "Resume search" },
     ["/"] = { "<cmd>Telescope live_grep<cr>", "Find in file" },
     [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
-    ["<space>"] = { "<cmd>Telescope find_files<cr>", "Find File" },
+    ["<space>"] = { "<Cmd>Telescope frecency workspace=CWD<CR>", "Find File" },
     ["`"] = { "<cmd>e #<cr>", "Switch to Other Buffer" },
     ["-"] = { "<C-W>s", "Split window below" },
     ["|"] = { "<C-W>v", "Split window right" },
@@ -53,8 +63,7 @@ wk.register({
     f = {
       name = "+file/find",
       f = { "<cmd>Telescope find_files<cr>", "Find File" },
-      r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-      b = { "<cmd>Telescope buffers<cr>", "Recent buffers" },
+      r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
       p = { "<cmd>Telescope projects<cr>", "Open project" },
       n = { "<cmd>enew<cr>", "New File" }
     },
