@@ -206,13 +206,14 @@
     };
 
     # There is a separate namespace for colorschemes:
-    colorschemes.onedark.enable = true;
+    colorscheme = "onedark";
+    # colorschemes.onedark.enable = true;
 
 
 
 
     # What about plugins not available as a module?
     # Use extraPlugins:
-    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim vim-visual-multi nvim-spectre vim-illuminate ];
+    extraPlugins = with pkgs.vimPlugins; [ lazygit-nvim vim-visual-multi nvim-spectre vim-illuminate onedarkpro-nvim ];
   };
 }
