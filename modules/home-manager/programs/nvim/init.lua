@@ -27,6 +27,22 @@ require("lspconfig").efm.setup {
   }
 }
 
+require("telescope").load_extension "session-lens"
+
+-- function _G.set_terminal_keymaps()
+--   local opts = { buffer = 0 }
+--   vim.keymap.set('t', '<esc><esc>', [[<C-\><C-n>]], opts)
+--   -- vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+--   vim.keymap.set('t', '<C-n>', [[<Cmd>wincmd h<CR>]], opts)
+--   vim.keymap.set('t', '<C-e>', [[<Cmd>wincmd j<CR>]], opts)
+--   vim.keymap.set('t', '<C-u>', [[<Cmd>wincmd k<CR>]], opts)
+--   vim.keymap.set('t', '<C-i>', [[<Cmd>wincmd l<CR>]], opts)
+--   vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+-- end
+--
+-- -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+-- vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
 local wk = require("which-key")
 wk.register({
   g = {
@@ -37,7 +53,7 @@ wk.register({
     t = { "<cmd>Telescope lsp_type_definitions<cr>", "type definition" }
   },
   s = { name = "+surround" },
-  ["<C-S>"] = { "<cmd>w<cr>", "save" },
+  ["<M-S>"] = { name = "save" },
   ["]"] = { name = "+next" },
   ["["] = { name = "+prev" },
   ["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
@@ -91,6 +107,9 @@ wk.register({
     },
     q = {
       name = "+quit/session",
+      s = { "<cmd>Telescope session-lens search_session<CR>", "search sessions" },
+      S = { "<cmd>SessionSave<CR>", "save session" },
+      r = { "<cmd>SessionRestore<CR>", "restore session" },
       q = { "<cmd>qa<CR>", "quit" },
       Q = { "<cmd>qa!<CR>", "force quit" }
     },
@@ -121,7 +140,8 @@ wk.register({
         d = { function() require("noice").cmd("dismiss") end, "Dismiss All" }
       }
     },
-    u = { name = "+ui" },
+    t = { name = "+toggle", t = { "<cmd>ToggleTerm<cr>", "terminal" } },
+    u = { "<cmd>UndotreeToggle<cr>", "Undo Tree" },
     w = {
       name = "+windows",
       w = { "<C-W>p", "Other window" },

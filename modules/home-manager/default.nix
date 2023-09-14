@@ -12,13 +12,16 @@
 
     erlang
     elixir
+    elixir-ls
     unison-ucm
     cbqn
     efm-langserver
+    # bun # uncomment when it's updated to 1.0
     nodePackages.prettier
 
     wxGTK32
     gnutls
+    gnupg
     fd
     ffmpeg
     jq

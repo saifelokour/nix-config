@@ -7,6 +7,7 @@
 
     globals.mapleader = " ";
 
+    clipboard.register = "unnamedplus";
     clipboard.providers.xclip.enable = true;
     autoCmd = [
       {
@@ -17,9 +18,14 @@
     ];
     options = {
       number = true; # Show line numbers
-      relativenumber = true; # Show relative line numbers
+      # relativenumber = true; # Show relative line numbers
 
       shiftwidth = 2; # Tab width should be 2
+    };
+    maps = {
+      normal."<M-s>" = { action = "<cmd>:w<CR>"; };
+      insert."<M-s>" = { action = "<cmd>:w<CR>"; };
+      terminal = { };
     };
     # Of course, we can still use comfy vimscript:
     #extraConfigVim = builtins.readFile ./init.vim;
@@ -36,52 +42,9 @@
       lualine.enable = true;
       neo-tree = {
         enable = true;
-        window = {
-          mappings = {
-            "<space>" = "none";
-            "<2-LeftMouse>" = "open";
-            "<cr>" = "open";
-            "<esc>" = "revert_preview";
-            P = { command = "toggle_preview"; config = { use_float = true; }; };
-            l = "focus_preview";
-            S = "open_split";
-            # S = "split_with_window_picker"; 
-            s = "open_vsplit";
-            # s = "vsplit_with_window_picker"; 
-            t = "open_tabnew";
-            #"<cr>" = "open_drop"; 
-            # t = "open_tab_drop"; 
-            w = "open_with_window_picker";
-            C = "close_node";
-            z = "close_all_nodes";
-            # Z = "expand_all_nodes"; 
-            R = "refresh";
-            a = {
-              command = "add";
-              # some commands may take optional config options, see :h neo-tree-mappings for details 
-              config = {
-                show_path = "none";
-                # "none", "relative", "absolute" 
-              };
-            };
-            A = "add_directory";
-            # also accepts the config.show_path and config.insert_as options. 
-            d = "delete";
-            r = "rename";
-            y = "copy_to_clipboard";
-            x = "cut_to_clipboard";
-            p = "paste_from_clipboard";
-            c = "copy";
-            # takes text input for destination, also accepts the config.show_path and config.insert_as options 
-            m = "move";
-            # takes text input for destination, also accepts the config.show_path and config.insert_as options 
-            e = "toggle_auto_expand_width";
-            q = "close_window";
-            "?" = "show_help";
-            "<" = "prev_source";
-            ">" = "next_source";
-          };
-        };
+        enableRefreshOnWrite = true;
+        filesystem.followCurrentFile.enabled = true;
+        buffers.followCurrentFile.enabled = true;
       };
       which-key.enable = true;
       notify.enable = true;
@@ -94,6 +57,7 @@
           project-nvim.enable = true;
         };
       };
+      undotree.enable = true;
 
       # lang
       treesitter = {
@@ -130,7 +94,11 @@
       };
 
       # project
-      project-nvim.enable = true;
+      project-nvim = {
+        enable = true;
+        detectionMethods = [ "pattern" "lsp" ];
+        patterns = [ ".git" ];
+      };
       gitsigns = {
         enable = true;
         onAttach.function = builtins.readFile ./nvim/gitsigns.lua;
@@ -152,7 +120,6 @@
           indentscope = { };
           move = { };
           pairs = { };
-          sessions = { };
           surround = { };
           trailspace = { };
         };
@@ -174,12 +141,6 @@
               function(fallback)
                 if cmp.visible() then
                   cmp.select_next_item()
-                elseif luasnip.expandable() then
-                  luasnip.expand()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
-                elseif check_backspace() then
-                  fallback()
                 else
                   fallback()
                 end
@@ -199,6 +160,24 @@
       # terminal
       toggleterm = {
         enable = true;
+        startInInsert = true;
+        size = ''function(term)
+		  if term.direction == "horizontal" then
+		    return 15
+		  elseif term.direction == "vertical" then
+		    return vim.o.columns * 0.4
+		  end
+		end'';
+      };
+
+
+      # sessions
+      auto-session = {
+        enable = true;
+        sessionLens = {
+          loadOnSetup = true;
+          previewer = null;
+        };
       };
       # Of course, there are a lot more plugins available.
       # You can find an up-to-date list here:
@@ -208,6 +187,7 @@
     # There is a separate namespace for colorschemes:
     colorscheme = "onedark";
     # colorschemes.onedark.enable = true;
+
 
 
 

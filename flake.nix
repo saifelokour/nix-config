@@ -13,10 +13,10 @@
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim.url = "github:pta2002/nixvim";
+    nixvim.url = "github:nix-community/nixvim";
   };
   outputs = inputs@{ nixpkgs, home-manager, darwin, nixvim, ... }: {
-    darwinConfigurations.Saifs-MacBook-Air =
+    darwinConfigurations.Saifs-MacBook-Pro =
       darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         pkgs = import nixpkgs {

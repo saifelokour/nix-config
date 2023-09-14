@@ -2,7 +2,7 @@
   # here go the darwin preferences and config items
   programs.zsh.enable = true;
   environment = {
-    shells = with pkgs; [ bash zsh ];
+    #    shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
     systemPackages = with pkgs; [ coreutils ];
     systemPath = [ "/opt/homebrew/bin" ];
@@ -46,9 +46,10 @@
       "calibre"
       "coconutbattery"
       "discord"
-      "docker"
+      #"docker"
       "figma"
       "google-chrome"
+      "iina"
       "karabiner-elements"
       "miro"
       "ngrok"
@@ -64,7 +65,7 @@
       "gromgit/fuse/mounty"
     ];
     taps = [ ];
-    brews = [ ];
+    brews = [ "gnu-sed" ];
   };
 })
 
